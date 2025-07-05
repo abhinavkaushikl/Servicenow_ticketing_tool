@@ -77,9 +77,6 @@ if __name__ == "__main__":
 
     encoder = FeatureEncoder(df_test, target_col='SLA Breach', verbose=True)
     df_encoded, encoding_strategy_df, encoders = encoder.encode()
-
-    print("\nEncoded DataFrame:")
-    print(df_encoded)
-
-    print("\nStrategy DataFrame:")
-    print(encoding_strategy_df)
+    
+    df_encoded.to_csv("data/processed/encoded_data.csv", index=False)
+    print("\n Encoded DataFrame:\n", df_encoded.head())
