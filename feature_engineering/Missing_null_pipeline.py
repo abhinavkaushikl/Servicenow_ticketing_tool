@@ -69,9 +69,15 @@ if __name__ == "__main__":
     
     processor.remove_high_null_columns()
     processor.handle_missing_values()
+    
+    
 
     logger.info("Final Cleaned DataFrame Preview:")
     logger.info(processor.df_cleaned.head())
+    
+    
+    processor.df_cleaned.to_csv("data/processed/processed_null_values_data.csv", index=False)
 
     total_null_values = processor.df_cleaned.isnull().sum().sum()
-    logger.info(f"🧮 Total remaining null values in cleaned data: {total_null_values}")
+    logger.info(f" Total remaining null values in cleaned data: {total_null_values}")
+    
