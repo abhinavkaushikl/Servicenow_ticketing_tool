@@ -1,32 +1,3 @@
-from model_trainer import ModelTrainer
-from sklearn.model_selection import train_test_split
-
-# Assuming X_resampled, y_resampled are ready after SMOTE balancing
-
-X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.2, random_state=42)
-
-trainer = ModelTrainer(model_type='rf')
-model = trainer.train_with_gridsearch(X_train, y_train)
-
-trainer.save_model("random_forest_model.pkl")
-Let me know if you want me to generate the notebook to test this!
-
-
-
-
-
-
-
-You said:
-dont save also the model
-
-
-ChatGPT said:
-Gotcha! Here’s the same training pipeline without saving the model and without evaluation — just training with GridSearchCV and returning the trained model:
-
-python
-Copy
-Edit
 from sklearn.ensemble import RandomForestClassifier
 from xgboost import XGBClassifier
 from sklearn.model_selection import GridSearchCV
@@ -80,6 +51,6 @@ class ModelTrainer:
         self.best_params = grid_search.best_params_
 
         if self.verbose:
-            print(f"✅ Best Params for {self.model_type.upper()}: {self.best_params}")
+            print(f"Best Params for {self.model_type.upper()}: {self.best_params}")
 
         return self.model
